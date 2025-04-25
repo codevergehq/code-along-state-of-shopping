@@ -1,4 +1,10 @@
-function Navbar({ toggleCart, totalItems }) {
+import { useTotalCartItems } from "../store/cartStore";
+import { useCartVisibilityActions } from "../store/cartVisibilityStore";
+
+function Navbar() {
+    const totalItems = useTotalCartItems();
+    const { toggleCart } = useCartVisibilityActions();
+
     return (
         <nav className="bg-indigo-600 text-white shadow-md">
             <div className="container mx-auto px-4 py-3 flex justify-between items-center">

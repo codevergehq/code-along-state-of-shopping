@@ -1,14 +1,15 @@
 import CartItem from './CartItem';
+import { useCartActions, useCartItems, useTotalCartPrice } from '../store/cartStore';
+import { useCartVisibilityActions, useIsCartOpen } from '../store/cartVisibilityStore';
 
-function Cart({ 
-  isCartOpen, 
-  closeCart, 
-  cartItems, 
-  updateQuantity, 
-  removeFromCart, 
-  clearCart, 
-  totalPrice 
-}) {
+function Cart() {
+  const cartItems = useCartItems();
+  const totalPrice = useTotalCartPrice();
+  const { updateQuantity, removeFromCart, clearCart } = useCartActions();
+  
+  const isCartOpen = useIsCartOpen();
+  const { closeCart } = useCartVisibilityActions();
+
   if (!isCartOpen) return null;
   
   return (
